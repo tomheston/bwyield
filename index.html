@@ -40,9 +40,9 @@
         const costBasis = spot - premium;
         const assignedGain = strike / costBasis - 1;
 
-        document.getElementById('cashYield').textContent = (cashYield * 100).toPrecision(1) + '%';
+        document.getElementById('cashYield').textContent = (cashYield * 100).toPrecision(2) + '%';
         document.getElementById('costBasis').textContent = costBasis.toFixed(2);
-        document.getElementById('assignedGain').textContent = (assignedGain * 100).toPrecision(1) + '%';
+        document.getElementById('assignedGain').textContent = (assignedGain * 100).toPrecision(2) + '%';
       }
     }
   </script>
