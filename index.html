@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Options Yield Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    input { display: block; margin-bottom: 10px; width: 100%; padding: 8px; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Options Yield Calculator</h1>
+
+  <input type="text" id="ticker" placeholder="Ticker" />
+  <input type="number" id="units" placeholder="Units" />
+  <input type="number" id="spot" placeholder="Spot Price" />
+  <input type="number" id="strike" placeholder="Strike Price" />
+  <input type="number" id="premium" placeholder="Premium" />
+
+  <div class="result">
+    <div>Cash Yield: <span id="cashYield">-</span></div>
+    <div>Cost Basis: <span id="costBasis">-</span></div>
+    <div>Assigned Gain: <span id="assignedGain">-</span></div>
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach(input => input.addEventListener('input', calculate));
+
+    function calculate() {
+      const spot = parseFloat(document.getElementById('spot').value);
+      const strike = parseFloat(document.getElementById('strike').value);
+      const premium = parseFloat(document.getElementById('premium').value);
+
+      if (!isNaN(spot) && !isNaN(strike) && !isNaN(premium)) {
+        const cashYield = premium / spot * 0.99;
+        const costBasis = spot - premium;
+        const assignedGain = strike / costBasis - 1;
+
+        document.getElementById('cashYield').textContent = (cashYield * 100).toPrecision(1) + '%';
+        document.getElementById('costBasis').textContent = costBasis.toFixed(2);
+        document.getElementById('assignedGain').textContent = (assignedGain * 100).toPrecision(1) + '%';
+      }
+    }
+  </script>
+</body>
+</html>
