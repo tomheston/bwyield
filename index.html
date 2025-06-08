@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +6,15 @@
   <title>BW Yield Calculator</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
-    input, label { display: block; margin-bottom: 10px; }
+    input, label {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+    }
     .result { margin-top: 20px; font-weight: bold; }
-    .result div { margin-bottom: 10px; }
+    .result div { margin-bottom: 10px; font-size: 18px; }
   </style>
 </head>
 <body>
@@ -34,11 +39,12 @@
     inputs.forEach(input => input.addEventListener('input', calculate));
 
     function calculate() {
+      const units = parseFloat(document.getElementById('units').value);
       const spot = parseFloat(document.getElementById('spot').value);
       const strike = parseFloat(document.getElementById('strike').value);
       const premium = parseFloat(document.getElementById('premium').value);
 
-      if (!isNaN(spot) && !isNaN(strike) && !isNaN(premium)) {
+      if (!isNaN(units) && !isNaN(spot) && !isNaN(strike) && !isNaN(premium)) {
         const cashYield = premium / spot * 0.99;
         const costBasis = spot - premium;
         const assignedGain = strike / costBasis - 1;
@@ -46,7 +52,7 @@
         const yieldPct = cashYield * 100;
         const gainPct = assignedGain * 100;
         const minPct = Math.min(cashYield, assignedGain);
-        const x = (100 * spot * minPct) / 3;
+        const x = (units * 100 * spot * minPct) / 3;
         const y = 2 * x;
 
         document.getElementById('cashYield').textContent = yieldPct.toPrecision(4) + '%';
