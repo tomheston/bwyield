@@ -5,13 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BW Yield Calculator</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    body { 
+      font-family: Verdana, sans-serif; 
+      padding: 20px; 
+      max-width: 800px; /* Increased from 600px for wider form */
+      margin: auto; 
+    }
     input, label {
       display: block;
       margin-bottom: 10px;
       width: 100%;
-      padding: 14px;
-      font-size: 16px;
+      padding: 16px; /* Increased from 14px for more internal space */
+      font-size: 18px; /* Increased from 16px for larger text */
+      height: 50px; /* Added to make inputs taller */
+      box-sizing: border-box; /* Ensures padding doesn't increase total size */
     }
     .result { margin-top: 20px; font-weight: bold; }
     .result div { margin-bottom: 10px; font-size: 18px; }
